@@ -1,5 +1,8 @@
 package com.bn.demo.controllers;
 
+import com.bn.demo.models.ProdutoModel;
+import com.bn.demo.services.ProdutoService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
