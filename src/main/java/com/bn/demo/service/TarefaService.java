@@ -5,6 +5,7 @@ import com.bn.demo.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,15 +26,16 @@ public class TarefaService {
         return tarefaRepository.findById(id);
     }
 
-    public Iterable<Tarefa> buscarTodos(){
+    public List<Tarefa> buscarTodos(){
         return tarefaRepository.findAll();
     }
 
-    public void atualizar(Long id, Tarefa tarefa){
+    public Tarefa atualizar(Long id, Tarefa tarefa){
         Tarefa entity = tarefaRepository.findById(id).get();
         entity.setDescricao(tarefa.getDescricao());
         entity.setDataVencimento(tarefa.getDataVencimento());
         entity.setConcluida(tarefa.getConcluida());
+        return tarefaRepository.save(entity);
     }
 
 }
