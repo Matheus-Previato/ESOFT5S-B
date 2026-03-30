@@ -1,33 +1,36 @@
-package com.bn.demo.controller;
+package com.bn.demo.Controller;
 
+import com.bn.demo.Model.LivroModel;
+import com.bn.demo.Service.LivroService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/livros")
+@RequestMapping(path = "/Livros")
 public class LivroController {
-
-    private final LivroService service;
-
-    public LivroController(LivroService service) {
-        this.service = service;
-    }
+    @Autowired
+    private LivroService service;
 
     @PostMapping
-    public Livro criar(@RequestBody Livro livro) {
-        return service.salvar(livro);
+    public LivroModel save(@RequestBody LivroModel livroModel){
+        return service.save(livroModel);
     }
 
     @GetMapping
-    public List<Livro> listar() {
-        return service.listarTodos();
+    public List<LivroModel> listar(){
+        return service.listar();
     }
 
     @GetMapping("/{id}")
-    public Optional<Livro> buscarPorId(@PathVariable Long id) {
-        return service.buscarPorId(id);
+    public Optional<LivroModel>BuscaPorId(@PathVariable Long id){
+        return service.BuscaPorId(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
-        service.deletar(id);
+    @DeleteMapping
+    public void Deletar(@PathVariable Long id){
+        service.Deletar(id);
     }
 }

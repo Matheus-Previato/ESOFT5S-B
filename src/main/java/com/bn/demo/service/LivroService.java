@@ -1,7 +1,8 @@
-package com.bn.demo.service;
+package com.bn.demo.Service;
 
-import com.bn.demo.entity.Livro;
-import com.Att.Gerenciamento.de.Livros.repository.LivroRepository;
+import com.bn.demo.Model.LivroModel;
+import com.bn.demo.Repository.LivroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,26 +10,22 @@ import java.util.Optional;
 
 @Service
 public class LivroService {
+    @Autowired
+    private LivroRepository repository;
 
-    private final LivroRepository repository;
-
-    public LivroService(LivroRepository repository) {
-        this.repository = repository;
+    public LivroModel save(LivroModel livroModel){
+        return repository.save(livroModel);
     }
 
-    public Livro salvar(Livro livro) {
-        return repository.save(livro);
-    }
-
-    public List<Livro> listarTodos() {
+    public List<LivroModel>listar(){
         return repository.findAll();
     }
 
-    public Optional<Livro> buscarPorId(Long id) {
+    public Optional<LivroModel>BuscaPorId(Long id){
         return repository.findById(id);
     }
 
-    public void deletar(Long id) {
+    public void Deletar(Long id){
         repository.deleteById(id);
     }
 }
