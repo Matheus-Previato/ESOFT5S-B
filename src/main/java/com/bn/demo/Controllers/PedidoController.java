@@ -16,7 +16,7 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping
-    public ResponseEntity<PedidoModel> salvarPedido(Pedido Model pedidoModel){
+    public ResponseEntity<PedidoModel> salvarPedido(@ResponseBody PedidoModel pedidoModel){
         PedidoModel request = pedidoService.salvarPedido(pedidoModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(pedidoModel.getId()).toUri();
